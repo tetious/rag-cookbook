@@ -1,0 +1,6 @@
+services:
+  mongo:
+    image: docker.io/mongodb/mongodb-atlas-local:8
+    restart: always
+    ports:
+      - 27017:27017
