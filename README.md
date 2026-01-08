@@ -1,4 +1,4 @@
-# RAG Playbook 📚
+# RAG Cookbook 📚
 
 A hands-on guide to Retrieval-Augmented Generation (RAG) patterns, progressing from simple to sophisticated implementations.
 
@@ -46,7 +46,7 @@ MONGO_DB_URL=mongodb+srv://user:pass@cluster.mongodb.net/
 # Optional (for LangSmith tracing)
 LANGCHAIN_API_KEY=your_langchain_key
 LANGCHAIN_TRACING_V2=true
-LANGCHAIN_PROJECT=rag-playbook
+LANGCHAIN_PROJECT=rag-cookbook
 
 # For Step 04 (Graph RAG)
 NEO4J_URI=bolt://localhost:7687
@@ -199,6 +199,8 @@ Query → Extract Entities → Graph Traversal → Find Related Docs
 - `graph_builder.py` - Extract entities, build graph
 - `retrieval.py` - Graph traversal + vector search
 - `generation.py` - Interactive Q&A
+- `evals/entity_extraction.py` - Measure entity extraction accuracy
+- `evals/multi_hop_reasoning.py` - Measure multi-hop path discovery
 
 **Run it**:
 ```bash
@@ -242,6 +244,9 @@ Query → Analyze → Decide: Retrieve? ─→ No: Use model knowledge
 - `tools.py` - Retrieval tools for the agent
 - `agent.py` - ReAct agent implementation
 - `generation.py` - Interactive mode
+- `evals/tool_selection.py` - Measure tool choice accuracy
+- `evals/query_decomposition.py` - Measure query breakdown quality
+- `evals/end_to_end.py` - Full pipeline evaluation
 
 **No new ingestion needed** - uses existing MongoDB vectors!
 
@@ -263,6 +268,11 @@ Each RAG pattern includes evaluation metrics:
 | **Groundedness** | Is answer supported by context? | `01-naive-rag/evals/` |
 | **Latency** | Time to retrieve and generate | `02-metadata-filtered/evals/` |
 | **Precision Delta** | Improvement from filtering | `02-metadata-filtered/evals/` |
+| **Entity Extraction** | Accuracy of extracting entities from queries | `04-graph-rag/evals/` |
+| **Multi-Hop Reasoning** | Can graph find expected entity connections? | `04-graph-rag/evals/` |
+| **Tool Selection** | Does agent pick the right tool? | `05-agentic-rag/evals/` |
+| **Query Decomposition** | Quality of breaking down complex queries | `05-agentic-rag/evals/` |
+| **End-to-End** | Answer quality, behavior, latency | `05-agentic-rag/evals/` |
 
 ```bash
 # Run evaluations
@@ -270,6 +280,11 @@ python 01-naive-rag/evals/precision.py
 python 01-naive-rag/evals/groundedness.py
 python 02-metadata-filtered/evals/latency.py
 python 02-metadata-filtered/evals/precision_delta.py
+python 04-graph-rag/evals/entity_extraction.py
+python 04-graph-rag/evals/multi_hop_reasoning.py
+python 05-agentic-rag/evals/tool_selection.py
+python 05-agentic-rag/evals/query_decomposition.py
+python 05-agentic-rag/evals/end_to_end.py
 ```
 
 ---
@@ -288,7 +303,7 @@ The `letters/` directory contains Warren Buffett's annual shareholder letters fr
 ## Project Structure
 
 ```
-rag-playbook/
+rag-cookbook/
 ├── README.md                    # You are here
 ├── .env                         # API keys (create this)
 ├── letters/                     # Source PDFs (Buffett letters)
@@ -319,13 +334,20 @@ rag-playbook/
 │   ├── docker-compose.yml
 │   ├── graph_builder.py
 │   ├── retrieval.py
-│   └── generation.py
+│   ├── generation.py
+│   └── evals/
+│       ├── entity_extraction.py
+│       └── multi_hop_reasoning.py
 │
 └── 05-agentic-rag/             # Step 5: Agent-based
     ├── README.md
     ├── tools.py
     ├── agent.py
-    └── generation.py
+    ├── generation.py
+    └── evals/
+        ├── tool_selection.py
+        ├── query_decomposition.py
+        └── end_to_end.py
 ```
 
 ---
