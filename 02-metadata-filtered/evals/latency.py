@@ -113,7 +113,7 @@ LATENCY_TEST_CASES = [
 
 def get_vector_store():
     """Connect to the MongoDB vector store."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     embeddings = OpenAIEmbeddings(

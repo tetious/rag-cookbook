@@ -90,7 +90,7 @@ class Neo4jConnection:
 
 def get_mongo_client():
     """Get MongoDB client."""
-    return MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    return MongoClient(MONGO_DB_URL)
 
 
 def load_chunks_from_mongo(limit: Optional[int] = None) -> list[dict]:

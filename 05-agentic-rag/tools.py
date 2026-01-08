@@ -30,7 +30,7 @@ INDEX_NAME = "metadata_filtered_index"
 
 def get_mongo_client():
     """Get MongoDB client."""
-    return MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    return MongoClient(MONGO_DB_URL)
 
 
 def get_vector_store():

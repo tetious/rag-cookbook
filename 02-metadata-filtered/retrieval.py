@@ -56,7 +56,7 @@ AVAILABLE_COMPANIES = [
 
 def get_vector_store():
     """Connect to the MongoDB vector store."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     embeddings = OpenAIEmbeddings(
@@ -291,7 +291,7 @@ def format_retrieved_context(documents: list) -> str:
 
 def get_available_years():
     """Get list of years available in the collection."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     try:
@@ -303,7 +303,7 @@ def get_available_years():
 
 def get_topic_counts():
     """Get counts of each topic bucket in the collection."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     try:
@@ -320,7 +320,7 @@ def get_topic_counts():
 
 def get_company_counts():
     """Get counts of company mentions in the collection."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     try:
@@ -337,7 +337,7 @@ def get_company_counts():
 
 def debug_collection():
     """Debug function to check MongoDB collection status."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     print("=" * 50)

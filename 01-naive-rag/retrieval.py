@@ -29,7 +29,7 @@ DEFAULT_TOP_K = 5
 
 def get_vector_store():
     """Connect to the MongoDB vector store."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     embeddings = OpenAIEmbeddings(
@@ -122,7 +122,7 @@ def format_retrieved_context(documents: list) -> str:
 
 def debug_collection():
     """Debug function to check MongoDB collection status."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     collection = client[DB_NAME][COLLECTION_NAME]
     
     print("=" * 50)

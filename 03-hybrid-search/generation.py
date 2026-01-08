@@ -62,7 +62,7 @@ _bm25_cache = {
 
 def get_mongo_client():
     """Get MongoDB client."""
-    return MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    return MongoClient(MONGO_DB_URL)
 
 
 def load_documents_for_bm25() -> list[Document]:

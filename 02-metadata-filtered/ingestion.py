@@ -399,7 +399,7 @@ def load_and_chunk_pdfs_with_metadata(pdf_files: list[Path]) -> list:
 
 def setup_mongodb_collection():
     """Set up MongoDB collection for vector storage."""
-    client = MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
+    client = MongoClient(MONGO_DB_URL)
     db = client[DB_NAME]
     
     # Create collection if it doesn't exist
